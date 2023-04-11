@@ -44,35 +44,27 @@ SRCS = ft_strlen.c		\
 	   ft_lstiter_bonus.c		\
 	   ft_lstmap_bonus.c		\
 
-OBJ = $(SRCS:.c=.o)
+SRCS	= ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_strjoin.c ft_split.c \
+			ft_strdup.c ft_itoa.c ft_putstr_fd.c
 
-OBJ_BONUS = $(SRCS_BONUS:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
-AR = ar -rc
+NAME	= libft.a
 
-CFLAGS = -Wall -Wextra -Werror
+%.o : %.c
+			gcc -Wall -Wextra -Werror -c -I./includes $< -o ${<:.c=.o}
 
-CC = cc
+${NAME}:	${OBJS}
+			ar -rcs $(NAME) $(OBJS)
 
-RM = rm -f
-
-$(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
-
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
-all: $(NAME)
-
-bonus: $(OBJ) $(OBJ_BONUS)
-	$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
+all:		${NAME}
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS)
+			rm -f ${OBJS} $(B_OBJS)
 
-fclean: clean 
-	$(RM) $(NAME)
+fclean:		clean
+			rm -f ${NAME}
 
-re :    fclean $(NAME) 
+re:			fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY:		all clean fclean re
