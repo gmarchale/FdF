@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/04/11 16:27:39 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/04/12 17:42:41 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FILES	= main.c \
 
 SRC_DIR	= src
 OBJDIR		= obj
-INCDIR		= includes ${FT_PRINTF_DIR}/includes ${LIBFT_DIR} src/mlx
+INCDIR		= ${FT_PRINTF_DIR} ${LIBFT_DIR} ${GNL_DIR} src/mlx/mlx_macos
 
 SRC		= $(addprefix ${SRC_DIR}/, ${FILES})
 OBJ		= $(addprefix ${OBJDIR}/, $(addsuffix .o, $(basename ${FILES})))
@@ -35,6 +35,9 @@ LIBFT		= ${LIBFT_DIR}/libft.a
 # ft_printf
 FT_PRINTF_DIR	= src/ft_printf
 FT_PRINTF		= ${FT_PRINTF_DIR}/libftprintf.a
+
+# GNL
+GNL_DIR		= src/get_next_line
 
 # Minilibx
 MLX_DIR		= src/mlx/mlx_macos
