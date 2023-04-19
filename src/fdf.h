@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/19 15:23:41 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:06:15 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,15 @@ typedef struct s_dot {
 	float	z;
 	int		color;
 }	t_dot;
+
+typedef struct s_map
+{
+	//t_vertice	*vert;
+	//t_face		*faces;
+	//t_vertice	*vert_last;
+	//t_face		*faces_last;
+	int			width;
+	int			height;
+}				t_map;
 
 #endif
