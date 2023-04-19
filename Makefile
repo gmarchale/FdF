@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/04/12 17:42:41 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/04/19 15:22:42 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ FT_PRINTF		= ${FT_PRINTF_DIR}/libftprintf.a
 GNL_DIR		= src/get_next_line
 
 # Minilibx
-MLX_DIR		= src/mlx/mlx_macos
+MLX_DIR		= mlx/mlx_macos
 
 MLX_PATH 	= $(MLX_DIR)/libmlx.a
 
