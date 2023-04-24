@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/19 17:06:15 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/24 11:49:00 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # include <unistd.h>
 # include "mlx.h"
+# include <fcntl.h>
+# include "Libft/libft.h"
+# include "get_next_line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
 
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
@@ -56,6 +60,13 @@ typedef struct s_dot {
 	float	z;
 	int		color;
 }	t_dot;
+
+typedef struct s_matrix {
+	t_dot	**mtx;
+	int		w;
+	int		h;
+	float	angle;
+}	t_matrix;
 
 typedef struct s_map
 {

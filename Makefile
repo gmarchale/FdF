@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/04/19 15:22:42 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/04/24 14:26:44 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ FILES	= main.c \
 				get_next_line/get_next_line_utils.c \
 
 SRC_DIR	= src
-OBJDIR		= obj
-INCDIR		= ${FT_PRINTF_DIR} ${LIBFT_DIR} ${GNL_DIR} src/mlx/mlx_macos
+OBJDIR	= obj
+INCDIR	= ${FT_PRINTF_DIR} ${LIBFT_DIR} ${GNL_DIR} src/mlx/mlx_macos
 
 SRC		= $(addprefix ${SRC_DIR}/, ${FILES})
 OBJ		= $(addprefix ${OBJDIR}/, $(addsuffix .o, $(basename ${FILES})))
