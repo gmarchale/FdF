@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/24 11:49:00 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:27:14 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ enum e_keys {
 	MOUSE_WHEEL_LEFT = 7
 };
 
-typedef struct s_line {
-	int	x0;
-	int	y0;
-	int	x1;
-	int	y1;
-	int	ix;
-	int	iy;
-	int	i;
-	int	color;
-}	t_line;
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 typedef struct s_dot {
 	float	x;
@@ -77,5 +74,7 @@ typedef struct s_map
 	int			width;
 	int			height;
 }				t_map;
+
+void	draw_line(t_data *img, int x1, int y1, int x2, int y2);
 
 #endif

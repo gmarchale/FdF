@@ -6,15 +6,16 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/04/24 14:26:44 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/04/24 15:35:55 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fdf
+NAME	=	fdf
 
-FILES	= main.c \
-				get_next_line/get_next_line.c \
-				get_next_line/get_next_line_utils.c \
+FILES	=	main.c \
+			get_next_line/get_next_line.c \
+			get_next_line/get_next_line_utils.c \
+			utils.c \
 
 SRC_DIR	= src
 OBJDIR	= obj
@@ -28,7 +29,7 @@ CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
-# libft
+# Libft
 LIBFT_DIR	= src/libft
 LIBFT		= ${LIBFT_DIR}/libft.a
 
@@ -36,7 +37,7 @@ LIBFT		= ${LIBFT_DIR}/libft.a
 FT_PRINTF_DIR	= src/ft_printf
 FT_PRINTF		= ${FT_PRINTF_DIR}/libftprintf.a
 
-# GNL
+# Get_next_line
 GNL_DIR		= src/get_next_line
 
 # Minilibx
