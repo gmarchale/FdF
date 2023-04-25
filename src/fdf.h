@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/25 16:27:14 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:41:44 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ enum e_keys {
 	MOUSE_WHEEL_LEFT = 7
 };
 
-typedef struct s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -51,19 +52,28 @@ typedef struct s_data {
 	int		endian;
 }				t_data;
 
-typedef struct s_dot {
+typedef struct s_dot
+{
 	float	x;
 	float	y;
 	float	z;
 	int		color;
 }	t_dot;
 
-typedef struct s_matrix {
+typedef struct s_matrix
+{
 	t_dot	**mtx;
 	int		w;
 	int		h;
 	float	angle;
 }	t_matrix;
+
+typedef struct s_fdf_map
+{
+	int	**parsed_map;
+	int	row_len;
+	int	column_len;
+}	t_fdf_map;
 
 typedef struct s_map
 {
