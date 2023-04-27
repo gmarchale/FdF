@@ -30,3 +30,16 @@ void	draw_line(t_data *img, int x1, int y1, int x2, int y2)
 		dot.x++;
 	}
 }
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}

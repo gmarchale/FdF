@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/04/24 15:35:55 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/04/27 17:42:43 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ FILES	=	main.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \
 			utils.c \
+			parsing.c \
 
 SRC_DIR	= src
 OBJDIR	= obj
