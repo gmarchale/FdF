@@ -22,7 +22,7 @@ void	draw_line(t_data *img, int x1, int y1, int x2, int y2)
 	{
 		my_mlx_pixel_put(img, dot.x, dot.y, 0x00FF0000);
 		e += slope;
-		if (e  >= 0.5)
+		if (e >= 0.5)
 		{
 			dot.y++;
 			e += -1;

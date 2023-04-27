@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/27 17:46:31 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:57:01 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	draw_line(t_data *img, int x1, int y1, int x2, int y2);
 void	free_tab(char **tab);
 
 //parsing.c
-int	get_height(char *path_file);
-int	get_width(char *path_file);
-int	check_line(char *line);
-int	check_map(char *path_file, t_map *map);
+int		get_height(char *path_file);
+int		get_width(char *path_file);
+int		check_line(char *line);
+int		check_map(char *path_file, t_map *map);
 
 #endif
