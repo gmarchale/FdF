@@ -8,17 +8,17 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_line(t_data *img, int x1, int y1, int x2, int y2)
+void	draw_line(t_data *img, t_dot point_a, t_dot point_b)
 {
 	t_dot	dot;
 	double	slope;
 	double	e;
 
-	dot.x = x1;
-	dot.y = y1;
+	dot.x = point_a.x;
+	dot.y = point_a.y;
 	e = 0.0;
-	slope = (double)(y2 - y1) / (x2 - x1);
-	while (dot.x < x2 && dot.y < y2)
+	slope = (double)(point_b.y - point_a.y) / (point_b.x - point_a.x);
+	while (dot.x < point_b.x && dot.y < point_b.y)
 	{
 		my_mlx_pixel_put(img, dot.x, dot.y, 0x00FF0000);
 		e += slope;

@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/27 17:57:01 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/28 15:00:41 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_map
 }				t_map;
 
 //utils.c
-void	draw_line(t_data *img, int x1, int y1, int x2, int y2);
+void	draw_line(t_data *img, t_dot point_a, t_dot point_b);
 void	free_tab(char **tab);
 
 //parsing.c

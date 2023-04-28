@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/27 17:48:35 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:59:56 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ int	main(int argc, char **argv)
 	void	*mlx_win;
 	t_data	img;
 	t_map	map;
+	t_dot	point_a;
+	t_dot	point_b;
 
-	double	x1 = 0;
-	double	y1 = 0;
-	double	x2 = 550;
-	double	y2 = 250;
+	point_a.x = 0;
+	point_a.y = 0;
+	point_b.x = 550;
+	point_b.y = 250;
 	(void)argc;
 	(void)argv;
 
@@ -51,7 +53,7 @@ int	main(int argc, char **argv)
 	mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world!");
 	img.img = mlx_new_image(mlx, 1000, 1000);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	draw_line(&img, x1, y1, x2, y2);
+	draw_line(&img, point_a, point_b);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
