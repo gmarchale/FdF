@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/04/28 15:00:41 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:50:49 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ enum e_keys {
 	MOUSE_WHEEL_DOWN = 4,
 	MOUSE_WHEEL_UP = 5,
 	MOUSE_WHEEL_RIGHT = 6,
-	MOUSE_WHEEL_LEFT = 7
+	MOUSE_WHEEL_LEFT = 7,
+	DESTROY = 17
 };
 
 typedef struct s_data
@@ -76,5 +77,8 @@ int		get_height(char *path_file);
 int		get_width(char *path_file);
 int		check_line(char *line);
 int		check_map(char *path_file, t_map *map);
+
+//hooks.c
+int	key_hook(int key, t_data *data);
 
 #endif
