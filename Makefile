@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/05/02 15:29:40 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/05/02 15:58:32 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ		= $(addprefix ${OBJDIR}/, $(addsuffix .o, $(basename ${FILES})))
 OBJ_DIR	= $(sort $(dir $(OBJ)))
 
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
 INCS		= $(foreach d, $(INCDIR), -I$d)
 
 # Libft
@@ -59,7 +59,7 @@ ${NAME}:	${OBJ}
 			@make -C ${MLX_DIR}
 			@make -C ${LIBFT_DIR}
 			@make -C ${FT_PRINTF_DIR}
-			${CC} ${OBJ} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJ} ${LIBFT} ${FT_PRINTF} ${MLX} -o ${NAME}
 
 clean:
 			@make clean -C ${MLX_DIR}

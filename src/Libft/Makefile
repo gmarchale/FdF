@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/05/02 15:30:25 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/05/02 16:00:22 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ BONUS_SRCS = $(addsuffix _bonus.c, $(BONUS_FILES))
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werrora #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werrora -fsanitize=address -g
 
 CC = gcc
 
