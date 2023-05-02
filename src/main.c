@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/02 15:31:19 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/02 16:41:43 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,25 @@ char	**get_tableau(char *path_file)
 	return (tab);
 }
 
-t_dot	**get_matrix(char **tab)
+t_dot	**get_matrix(char **tab, char *path_file)
 {
 	int		i;
 	int		j;
+	int		width;
+	int		height;
 	t_dot	**matrix;
 
 	i = 0;
 	j = 0;
-	matrix = NULL;
+	width = get_width(path_file);
+	height = get_height(path_file);
+	matrix = (t_dot **) malloc(height * sizeof(int *));
+	while (i < height)
+	{
+		matrix[i] = (t_dot *) malloc(width * sizeof(int));
+		i++;
+	}
+	i = 0;
 	while (tab[j])
 	{
 		i = 0;
@@ -90,7 +100,7 @@ int	main(int argc, char **argv)
 	t_map	map;
 	t_dot	point_a;
 	t_dot	point_b;
-	//t_dot	**matrix;
+	t_dot	**matrix;
 
 	point_a.x = 0;
 	point_a.y = 0;
@@ -108,7 +118,7 @@ int	main(int argc, char **argv)
 	draw_line(&img, point_a, point_b);
 	char **salut_test;
 	salut_test = get_tableau(argv[1]);
-	//matrix = get_matrix(salut);
+	matrix = get_matrix(salut_test, argv[1]);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
