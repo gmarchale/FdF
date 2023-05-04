@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/03 12:24:22 by gmarchal          #+#    #+#              #
-#    Updated: 2023/05/02 16:00:13 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/05/03 13:41:48 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ = $(SRCS:.c=.o)
 
 AR = ar -rc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
 CC = cc
 

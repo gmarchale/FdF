@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/02 16:41:43 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:41:33 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h>
 //delete include 
+
+void	ft_init_mlx(t_display *display, t_image_data *img)
+{
+	display->mlx = mlx_init();
+	if (!display->mlx)
+		exit(1);
+	display->window = mlx_new_window(display->mlx, 1920, 1080, "FDF");
+	display->img.img = mlx_new_image(display->mlx, 1920, 1080);
+	img->address = mlx_get_data_addr(display->img.img,
+			&img->bits_per_pixel, &img->line_length, &img->endian);
+}
 
 void	arg_error(int argc, char **argv)
 {
@@ -31,67 +42,40 @@ void	arg_error(int argc, char **argv)
 	}
 }
 
-char	**get_tableau(char *path_file)
-{
-	int	i;
-	int	j;
-	int	fd;
-	char	*line;
-	char	**tab;
 
-	tab = NULL;
-	fd = open(path_file, O_RDONLY);
+void	ft_init_tab_parsing(char **argv, int fd, t_fdf_map *map,
+		t_list *parsing_list)
+{
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (NULL);
-	line = get_next_line(fd);
-	i = 0;
-	j = 0;
-	while (line)
-	{
-		tab = ft_split(line, ' ');
-		free(line); // free a chaque fois ?
-		line = get_next_line(fd);
-	}
-	free(line);
-	return (tab);
+		exit(1);
+	parsing_list = ft_convert_map_to_list(fd);
+	*map = ft_create_parsed_map(parsing_list);
+	ft_lstclear(&parsing_list, &free);
 }
 
-t_dot	**get_matrix(char **tab, char *path_file)
+int	main(int argc, char **argv)
 {
-	int		i;
-	int		j;
-	int		width;
-	int		height;
-	t_dot	**matrix;
+	int				fd;
+	t_list			parsing_list;
+	t_fdf_map		map;
+	t_display		display;
+	t_image_data	img;
 
-	i = 0;
-	j = 0;
-	width = get_width(path_file);
-	height = get_height(path_file);
-	matrix = (t_dot **) malloc(height * sizeof(int *));
-	while (i < height)
+	fd = 0;
+	if (argc == 2)
 	{
-		matrix[i] = (t_dot *) malloc(width * sizeof(int));
-		i++;
+		ft_init_tab_parsing(argv, fd, &map, &parsing_list);
+		ft_init_mlx(&display, &img);
+		//ft_link_map_points(&img, &map);
+		mlx_put_image_to_window(display.mlx, display.window,
+			display.img.img, 0, 0);
+		//ft_mlx_hooks(&display);
+		mlx_loop(display.mlx);
 	}
-	i = 0;
-	while (tab[j])
-	{
-		i = 0;
-		while (tab[j][i])
-		{
-			matrix[j][i].x = j;
-			matrix[j][i].y = i;
-			matrix[j][i].z = ft_atoi(&tab[j][i]);
-			//ft_printf("%d ", matrix[j][i]); //print
-			i++;
-		}
-		j++;
-		//ft_printf("\n");
-	}
-	return (matrix);
+	return (1);
 }
-
+/*
 int	main(int argc, char **argv)
 {
 	void	*mlx;
@@ -100,7 +84,6 @@ int	main(int argc, char **argv)
 	t_map	map;
 	t_dot	point_a;
 	t_dot	point_b;
-	t_dot	**matrix;
 
 	point_a.x = 0;
 	point_a.y = 0;
@@ -116,9 +99,7 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(mlx, 1000, 1000);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	draw_line(&img, point_a, point_b);
-	char **salut_test;
-	salut_test = get_tableau(argv[1]);
-	matrix = get_matrix(salut_test, argv[1]);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
+*/
