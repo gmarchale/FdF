@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/04 18:41:33 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:23:51 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,43 @@ void	ft_init_tab_parsing(char **argv, int fd, t_fdf_map *map,
 	*map = ft_create_parsed_map(parsing_list);
 	ft_lstclear(&parsing_list, &free);
 }
+/*
+t_coordinates	ft_ratio(int x, int y, t_fdf_map *map)
+{
+	t_coordinates	new_coord;
+	int				ratio;
 
+	ratio = 1000 / (map->column_len + map->row_len);
+	new_coord.x = (x * ratio) + 510;
+	new_coord.y = (y * ratio) + 610;
+	new_coord = ft_isometric(x, y, &new_coord, map);
+	return (new_coord);
+}
+
+void	ft_link_map_points(t_image_data *img, t_fdf_map *map)
+{
+	t_coordinates	matrix;
+	t_coordinates	res;
+
+	matrix.y = 0;
+	while (matrix.y < map->column_len)
+	{
+		matrix.x = 0;
+		while (matrix.x < map->row_len)
+		{
+			res = matrix;
+			if (matrix.y < map->column_len - 1)
+				draw_line(img, ft_ratio(res.x, res.y, map),
+					ft_ratio(res.x, res.y + 1, map));
+			if (matrix.x < map->row_len - 1)
+				draw_line(img, ft_ratio(res.x, res.y, map),
+					ft_ratio(res.x + 1, res.y, map));
+			matrix.x++;
+		}
+		matrix.y++;
+	}
+}
+*/
 int	main(int argc, char **argv)
 {
 	int				fd;
@@ -66,40 +102,13 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		ft_init_tab_parsing(argv, fd, &map, &parsing_list);
+		ft_printf("%d\n", map.parsed_map[2][2]);
 		ft_init_mlx(&display, &img);
 		//ft_link_map_points(&img, &map);
 		mlx_put_image_to_window(display.mlx, display.window,
 			display.img.img, 0, 0);
-		//ft_mlx_hooks(&display);
+		ft_mlx_hooks(&display);
 		mlx_loop(display.mlx);
 	}
 	return (1);
 }
-/*
-int	main(int argc, char **argv)
-{
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-	t_map	map;
-	t_dot	point_a;
-	t_dot	point_b;
-
-	point_a.x = 0;
-	point_a.y = 0;
-	point_b.x = 550;
-	point_b.y = 250;
-	(void)argc;
-	(void)argv;
-
-	arg_error(argc, argv);
-	check_map(argv[1], &map);
-	mlx = mlx_init(); //connecte au serveur graphique
-	mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world!");
-	img.img = mlx_new_image(mlx, 1000, 1000);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	draw_line(&img, point_a, point_b);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-}
-*/
