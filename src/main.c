@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/05 16:23:51 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:05:42 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 //delete include 
 
-void	ft_init_mlx(t_display *display, t_image_data *img)
+void	init_mlx(t_display *display, t_image_data *img)
 {
 	display->mlx = mlx_init();
 	if (!display->mlx)
@@ -42,19 +42,29 @@ void	arg_error(int argc, char **argv)
 	}
 }
 
-
-void	ft_init_tab_parsing(char **argv, int fd, t_fdf_map *map,
+void	init_tab_parsing(char **argv, int fd, t_fdf_map *map,
 		t_list *parsing_list)
 {
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit(1);
-	parsing_list = ft_convert_map_to_list(fd);
+	parsing_list = convert_map_to_list(fd);
 	*map = ft_create_parsed_map(parsing_list);
 	ft_lstclear(&parsing_list, &free);
 }
-/*
-t_coordinates	ft_ratio(int x, int y, t_fdf_map *map)
+
+t_coordinates	ft_isometric(int x, int y, t_coordinates *coordinates,
+			t_fdf_map *map)
+{
+	t_coordinates	transformed_coord;
+
+	transformed_coord.y = (coordinates->x - map->parsed_map[x][y]) / sqrt(2);
+	transformed_coord.x = ((coordinates->x + 2 * coordinates->y
+				+ map->parsed_map[x][y]) / sqrt(6));
+	return (transformed_coord);
+}
+
+t_coordinates	ratio(int x, int y, t_fdf_map *map)
 {
 	t_coordinates	new_coord;
 	int				ratio;
@@ -66,7 +76,7 @@ t_coordinates	ft_ratio(int x, int y, t_fdf_map *map)
 	return (new_coord);
 }
 
-void	ft_link_map_points(t_image_data *img, t_fdf_map *map)
+void	link_map_points(t_image_data *img, t_fdf_map *map)
 {
 	t_coordinates	matrix;
 	t_coordinates	res;
@@ -79,17 +89,17 @@ void	ft_link_map_points(t_image_data *img, t_fdf_map *map)
 		{
 			res = matrix;
 			if (matrix.y < map->column_len - 1)
-				draw_line(img, ft_ratio(res.x, res.y, map),
-					ft_ratio(res.x, res.y + 1, map));
+				draw_line(img, ratio(res.x, res.y, map),
+					ratio(res.x, res.y + 1, map));
 			if (matrix.x < map->row_len - 1)
-				draw_line(img, ft_ratio(res.x, res.y, map),
-					ft_ratio(res.x + 1, res.y, map));
+				draw_line(img, ratio(res.x, res.y, map),
+					ratio(res.x + 1, res.y, map));
 			matrix.x++;
 		}
 		matrix.y++;
 	}
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	int				fd;
@@ -101,10 +111,9 @@ int	main(int argc, char **argv)
 	fd = 0;
 	if (argc == 2)
 	{
-		ft_init_tab_parsing(argv, fd, &map, &parsing_list);
-		ft_printf("%d\n", map.parsed_map[2][2]);
-		ft_init_mlx(&display, &img);
-		//ft_link_map_points(&img, &map);
+		init_tab_parsing(argv, fd, &map, &parsing_list);
+		init_mlx(&display, &img);
+		link_map_points(&img, &map);
 		mlx_put_image_to_window(display.mlx, display.window,
 			display.img.img, 0, 0);
 		ft_mlx_hooks(&display);

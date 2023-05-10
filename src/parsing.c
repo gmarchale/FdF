@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:39:16 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/04 18:00:32 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:05:16 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	get_width(char *path_file)
 	return (i);
 }
 
-t_list	*ft_convert_map_to_list(int map_fd)
+t_list	*convert_map_to_list(int map_fd)
 {
 	char	*read_line;
 	t_list	*parsing_list;
