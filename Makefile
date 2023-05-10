@@ -6,7 +6,7 @@
 #    By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/11 15:22:24 by gmarchal          #+#    #+#              #
-#    Updated: 2023/05/05 15:40:49 by gmarchal         ###   ########.fr        #
+#    Updated: 2023/05/10 17:14:14 by gmarchal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ FILES	=	main.c \
 			parsing.c \
 			checks.c \
 			mapping.c \
-			hooks.c
+			hooks.c	\
+			draw.c
 
 SRC_DIR	= src
 OBJDIR	= obj

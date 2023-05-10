@@ -6,11 +6,55 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:53:04 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/04 17:55:06 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:41:34 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	get_height(char *path_file)
+{
+	int		count;
+	int		fd;
+	char	*tmp;
+
+	fd = open(path_file, O_RDONLY);
+	if (fd == -1)
+		return (-1); // to do : gerer error
+	count = 0;
+	while (1)
+	{
+		tmp = get_next_line(fd);
+		if (!tmp && count == 0)
+			return (-1); // to do : gerer error
+		if (!tmp)
+			break ;
+		count++;
+		free(tmp);
+	}
+	close(fd);
+	return (count);
+}
+
+int	get_width(char *path_file)
+{
+	int		i;
+	int		fd;
+	char	*line;
+	char	**tab;
+
+	fd = open(path_file, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	line = get_next_line(fd);
+	tab = ft_split(line, ' ');
+	free(line);
+	i = 0;
+	while (tab[i])
+		i++;
+	free_tab(tab);
+	return (i);
+}
 
 int	check_line(char *line)
 {

@@ -6,55 +6,11 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:39:16 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/10 16:05:16 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:08:06 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	get_height(char *path_file)
-{
-	int		count;
-	int		fd;
-	char	*tmp;
-
-	fd = open(path_file, O_RDONLY);
-	if (fd == -1)
-		return (-1); // to do : gerer error
-	count = 0;
-	while (1)
-	{
-		tmp = get_next_line(fd);
-		if (!tmp && count == 0)
-			return (-1); // to do : gerer error
-		if (!tmp)
-			break ;
-		count++;
-		free(tmp);
-	}
-	close(fd);
-	return (count);
-}
-
-int	get_width(char *path_file)
-{
-	int		i;
-	int		fd;
-	char	*line;
-	char	**tab;
-
-	fd = open(path_file, O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	line = get_next_line(fd);
-	tab = ft_split(line, ' ');
-	free(line);
-	i = 0;
-	while (tab[i])
-		i++;
-	free_tab(tab);
-	return (i);
-}
 
 t_list	*convert_map_to_list(int map_fd)
 {
@@ -75,7 +31,7 @@ t_list	*convert_map_to_list(int map_fd)
 	return (parsing_list);
 }
 
-int	*ft_parse_line(t_list *parsing_list)
+int	*parse_line(t_list *parsing_list)
 {
 	char	**split_array;
 	int		parsed_number;
@@ -97,7 +53,7 @@ int	*ft_parse_line(t_list *parsing_list)
 	return (parsed_line);
 }
 
-void	ft_parse_all_lines(char *tmp, t_fdf_map *map,
+void	parse_all_lines(char *tmp, t_fdf_map *map,
 		t_list *parsing_list, char **split_line)
 {
 	int	i;
@@ -111,7 +67,7 @@ void	ft_parse_all_lines(char *tmp, t_fdf_map *map,
 		split_line = ft_split(parsing_list->content, ' ');
 		if ((int)ft_strarray_len(split_line) == map->column_len)
 		{
-			map->parsed_map[i] = ft_parse_line(parsing_list);
+			map->parsed_map[i] = parse_line(parsing_list);
 			parsing_list = parsing_list->next;
 		}
 		else
@@ -121,7 +77,7 @@ void	ft_parse_all_lines(char *tmp, t_fdf_map *map,
 	}
 }
 
-t_fdf_map	ft_create_parsed_map(t_list *parsing_list)
+t_fdf_map	create_parsed_map(t_list *parsing_list)
 {
 	t_fdf_map	map;
 	char		*tmp;
@@ -135,7 +91,7 @@ t_fdf_map	ft_create_parsed_map(t_list *parsing_list)
 	split_line = ft_split(parsing_list->content, ' ');
 	map.column_len = ft_strarray_len(split_line);
 	map.parsed_map = my_malloc(sizeof(*map.parsed_map) * map.row_len);
-	ft_parse_all_lines(tmp, &map, parsing_list, split_line);
+	parse_all_lines(tmp, &map, parsing_list, split_line);
 	ft_free_split(split_line);
 	return (map);
 }

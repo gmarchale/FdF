@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:50:18 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/10 15:53:23 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:36:45 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color)
 
 	dst = data->address + (y * data->line_length
 			+ x * (data->bits_per_pixel / 8));
-	* (unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 static void	ft_delta_sign_check(int	*coord_sign, int *delta)
