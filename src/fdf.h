@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:26:27 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/10 18:08:27 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:11:16 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_coordinates
 typedef struct s_map
 {
 	int		width;
-	int		height; // struct map en trop?
+	int		height;
 	double	angle;
 }				t_map;
 

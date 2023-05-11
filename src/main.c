@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/11 15:56:29 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:15:14 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ int	main(int argc, char **argv)
 		display.img.img, 0, 0);
 	ft_mlx_hooks(&display);
 	mlx_loop(display.mlx);
-	return (1);
+	return (0);
 }

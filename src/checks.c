@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:53:04 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/10 16:41:34 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:16:39 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	get_height(char *path_file)
 
 	fd = open(path_file, O_RDONLY);
 	if (fd == -1)
-		return (-1); // to do : gerer error
+		exit(EXIT_FAILURE);
 	count = 0;
 	while (1)
 	{
 		tmp = get_next_line(fd);
 		if (!tmp && count == 0)
-			return (-1); // to do : gerer error
+			exit(EXIT_FAILURE);
 		if (!tmp)
 			break ;
 		count++;
