@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 11:54:12 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/05/10 18:28:43 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:56:29 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	init_tab_parsing(char **argv, int fd, t_fdf_map *map,
 	parsing_list = convert_map_to_list(fd);
 	*map = create_parsed_map(parsing_list);
 	ft_lstclear(&parsing_list, &free);
+	close(fd);
 }
 
 int	main(int argc, char **argv)
